@@ -1,0 +1,57 @@
+{
+  "name": "image-steam",
+  "version": "0.0.1",
+  "description": "A template for creating cross-browser extensions",
+  "scripts": {
+    "chrome-build": "cross-env TARGET=chrome gulp",
+    "opera-build": "cross-env TARGET=opera gulp",
+    "firefox-build": "cross-env TARGET=firefox gulp",
+    "build": "cross-env NODE_ENV=production npm run chrome-build && cross-env NODE_ENV=production npm run opera-build && cross-env NODE_ENV=production npm run firefox-build",
+    "chrome-watch": "cross-env TARGET=chrome gulp watch",
+    "opera-watch": "cross-env TARGET=opera gulp watch",
+    "firefox-watch": "cross-env TARGET=firefox gulp watch",
+    "chrome-dist": "cross-env NODE_ENV=production cross-env TARGET=chrome gulp dist",
+    "opera-dist": "cross-env NODE_ENV=production cross-env TARGET=opera gulp dist",
+    "firefox-dist": "cross-env NODE_ENV=production cross-env TARGET=firefox gulp dist",
+    "dist": "npm run chrome-dist && npm run opera-dist && npm run firefox-dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webbery/image-steam"
+  },
+  "author": "webberg <webbery@foxmail.com>",
+  "bugs": {
+    "url": "https://github.com/webbery/image-steam/issues"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "babelify": "^9.0.0",
+    "browserify": "^15.0.0",
+    "cross-env": "^6.0.0",
+    "event-stream": "^3.3.4",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-clean": "^0.3.1",
+    "gulp-eslint": "^6.0.0",
+    "gulp-if": "^3.0.0",
+    "gulp-livereload": "^4.0.0",
+    "gulp-load-plugins": "^2.0.6",
+    "gulp-merge-json": "^2.0.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-run-sequence": "*",
+    "gulp-sass": "^4.0.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-zip": "^5.0.0",
+    "preprocessify": "^1.0.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^2.0.0"
+  },
+  "dependencies": {
+    "ws": "^7.4.4"
+  }
+}

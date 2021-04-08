@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "sourceMap": true,
+        "noUnusedParameters": true,
+        "baseUrl": "./"
+    },
+    "files": [
+        "civet.ts",
+        "src/**/*.ts"
+    ],
+    "exclude": ["node_modules"]
+}
