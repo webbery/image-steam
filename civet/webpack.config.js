@@ -17,7 +17,7 @@ var webpack_opts = {
   mode: "production",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: 'civet.js',
+    filename: 'index.js',
     libraryTarget: 'commonjs2'
   },
   resolve: {

@@ -52,6 +52,6 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "dependencies": {
-    "ws": "^7.4.4"
+    "civet-extend": "0.0.1"
   }
 }

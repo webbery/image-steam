@@ -1,22 +1,25 @@
 import ext from "./utils/ext";
+import civet from 'civet-extend'
+const cv = require('civet-extend')
 
 // var connection = new WebSocket('ws://127.0.0.1:8013', 'civet-protocol');
 
 let menu = {
   id: 'add-image',
   title: '添加到civet',
-  contexts: ['selection']
+  contexts: ['image'] // https://developer.chrome.com/docs/extensions/reference/contextMenus/#type-ContextType
 }
 
 // console.info(ext)
-// console.info(chrome)
+console.info(civet)
+console.info(cv)
 
 ext.contextMenus.create(menu)
 ext.contextMenus.onClicked.addListener(
   function(info, tab) {
     switch(info.menuItemId) {
       case 'add-image':
-        console.info(encodeURI(info.selectionText))
+        console.info(info)
         // ext.tabs.create({})
         break;
       default:
