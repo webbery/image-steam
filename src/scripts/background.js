@@ -1,5 +1,5 @@
 import ext from "./utils/ext";
-import civet from 'civet-extend'
+import * as civet from 'civet-extend'
 const cv = require('civet-extend')
 
 // var connection = new WebSocket('ws://127.0.0.1:8013', 'civet-protocol');
@@ -20,6 +20,7 @@ ext.contextMenus.onClicked.addListener(
     switch(info.menuItemId) {
       case 'add-image':
         console.info(info)
+        civet.resource.load(info.srcUrl)
         // ext.tabs.create({})
         break;
       default:

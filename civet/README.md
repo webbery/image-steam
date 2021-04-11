@@ -1,2 +1,0 @@
-# civet
-###  civet extension interface
