@@ -35,7 +35,7 @@ var renderBookmark = (data) => {
 
 ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
   var activeTab = tabs[0];
-  chrome.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
+  ext.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
 });
 
 popup.addEventListener("click", function(e) {

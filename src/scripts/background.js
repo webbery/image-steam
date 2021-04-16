@@ -21,7 +21,6 @@ ext.contextMenus.onClicked.addListener(
       case 'add-image':
         console.info(info)
         civet.resource.load(info.srcUrl)
-        // ext.tabs.create({})
         break;
       default:
         break;
