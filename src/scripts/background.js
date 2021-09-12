@@ -11,7 +11,6 @@ let menu = {
 }
 
 // console.info(ext)
-console.info(civet)
 console.info(cv)
 
 ext.contextMenus.create(menu)
@@ -20,7 +19,8 @@ ext.contextMenus.onClicked.addListener(
     switch(info.menuItemId) {
       case 'add-image':
         console.info(info)
-        civet.resource.load(info.srcUrl)
+        console.info(civet)
+        civet.resource.save(info.srcUrl)
         break;
       default:
         break;
