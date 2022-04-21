@@ -1,5 +1,5 @@
 import ext from "./utils/ext";
-import * as civet from 'civet-extend'
+import { resource } from 'civet-extend'
 const cv = require('civet-extend')
 
 // var connection = new WebSocket('ws://127.0.0.1:8013', 'civet-protocol');
@@ -10,8 +10,13 @@ let menu = {
   contexts: ['image'] // https://developer.chrome.com/docs/extensions/reference/contextMenus/#type-ContextType
 }
 
-// console.info(ext)
-console.info(cv)
+console.info(resource)
+resource.onDownloadSuccess(function(id, params) {
+  console.info(`download success[${id}]: ${params}`)
+})
+resource.onDownloadFail(function(id, params) {
+  console.info(`download fail[${id}]: ${params}`)
+})
 
 ext.contextMenus.create(menu)
 ext.contextMenus.onClicked.addListener(
@@ -19,8 +24,7 @@ ext.contextMenus.onClicked.addListener(
     switch(info.menuItemId) {
       case 'add-image':
         console.info(info)
-        console.info(civet)
-        civet.resource.save(info.srcUrl)
+        resource.addByPath(info.srcUrl)
         break;
       default:
         break;
