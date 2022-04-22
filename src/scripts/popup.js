@@ -9,11 +9,16 @@ storage.get('color', function(resp) {
   }
 });
 
-var template = (data) => {
-  var json = JSON.stringify(data);
-  console.info('info:', json)
+var template = (candidates, active) => {
+  let html = '<select multiple class="form-control">'
+  for (let db of candidates) {
+    html += '<option>' + db + '</option>'
+  }
+  html += '</select>'
   return (`
-  <input type="checkbox" id="memery"/>
+    保存到:<div class="btn-group-vertical" role="group">
+    ${html}
+    </div>
   `);
 }
 
@@ -25,16 +30,20 @@ var renderMessage = (message) => {
 
 var renderBookmark = (data) => {
   var displayContainer = document.getElementById("display-container")
-  if(data) {
-    var tmpl = template(data);
+  var bg = ext.extension.getBackgroundPage();
+  const active = bg.getCurrentDB()
+  const dbs = bg.getAllDB()
+  if(dbs && dbs.length) {
+    var tmpl = template(dbs, active);
     displayContainer.innerHTML = tmpl;  
   } else {
-    renderMessage("Sorry, could not extract this page's title and URL")
+    renderMessage("<div>未检测到Civet, 请确认已经启动</div>")
   }
 }
 
 ext.tabs.query({active: true, currentWindow: true}, function(tabs) {
   var activeTab = tabs[0];
+  console.info('show data')
   ext.tabs.sendMessage(activeTab.id, { action: 'process-page' }, renderBookmark);
 });
 
@@ -57,3 +66,8 @@ optionsLink.addEventListener("click", function(e) {
   e.preventDefault();
   ext.tabs.create({'url': ext.extension.getURL('options.html')});
 })
+
+ext.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+  }
+)

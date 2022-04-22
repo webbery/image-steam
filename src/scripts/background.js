@@ -1,6 +1,5 @@
 import ext from "./utils/ext";
-import { resource } from 'civet-extend'
-const cv = require('civet-extend')
+import { resource, getAllResourceDB, getCurrentActiveDB } from 'civet-extend'
 
 // var connection = new WebSocket('ws://127.0.0.1:8013', 'civet-protocol');
 
@@ -41,3 +40,11 @@ ext.runtime.onMessage.addListener(
     }
   }
 );
+
+window.getAllDB = function () {
+  return getAllResourceDB()
+}
+
+window.getCurrentDB = function () {
+  return getCurrentActiveDB()
+}
