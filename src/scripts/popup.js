@@ -10,15 +10,16 @@ storage.get('color', function(resp) {
 });
 
 var template = (candidates, active) => {
-  let html = '<select multiple class="form-control">'
+  let html = '<div class="dropdown-content">'
   for (let db of candidates) {
-    html += '<option>' + db + '</option>'
+    html += '<a href="#">' + db + '</a>'
   }
-  html += '</select>'
-  return (`
-    保存到:<div class="btn-group-vertical" role="group">
+  html += '</div>'
+  return (`默认保存资源库:
+  <div class="dropdown">
+    <button class="dropbtn">${active}</button>
     ${html}
-    </div>
+  </div>
   `);
 }
 

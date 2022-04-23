@@ -45,6 +45,7 @@ gulp.task('js', (done) => {
 })
 
 gulp.task('styles', gulp.series(() => {
+  mergeCSS(target)
   return gulp.src('src/styles/**/*.scss')
     .pipe($.plumber())
     .pipe($.sass.sync({
@@ -112,6 +113,17 @@ function pipe(src, ...transforms) {
   }, gulp.src(src, {'allowEmpty': true}))
 }
 
+function mergeCSS(target) {
+  const files = [
+    // 'bootstrap.min.css',
+    // 'bootstrap-theme.min.css'
+  ]
+  let tasks = files.map( file => {
+    return pipe(`./src/styles/${file}`, `./build/${target}/styles`);
+  })
+  return merge(tasks);
+}
+
 function mergeAll(dest) {
   return merge(
     pipe('./src/icons/**/*', `./build/${dest}/icons`),
@@ -124,6 +136,8 @@ function mergeAll(dest) {
 
 function buildJS(target) {
   const files = [
+    // 'jquery.min.js',
+    // 'bootstrap.min.js',
     'background.js',
     'contentscript.js',
     'options.js',
