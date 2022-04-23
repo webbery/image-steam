@@ -47,8 +47,7 @@
   "web_accessible_resources": [
     "styles/bootstrap.min.css",
     "styles/bootstrap-theme.min.css"
-  ],
-  "content_security_policy": "script-src 'self' https://ajax.aspnetcdn.com; object-src 'self'"
+  ]
 }
 
 

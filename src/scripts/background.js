@@ -15,6 +15,7 @@ resource.onDownloadSuccess(function(id, params) {
 })
 resource.onDownloadFail(function(id, params) {
   console.info(`download fail[${id}]: ${params}`)
+  // TODO: 缓存链接到本地, 在下次连接上civet时候重新同步
 })
 
 ext.contextMenus.create(menu)
@@ -23,7 +24,9 @@ ext.contextMenus.onClicked.addListener(
     switch(info.menuItemId) {
       case 'add-image':
         console.info(info)
-        resource.addByPath(info.srcUrl)
+        let curDB = getCurrentActiveDB()
+        if (window.usedDB) curDB = window.usedDB
+        resource.addByPath(info.srcUrl, curDB)
         break;
       default:
         break;

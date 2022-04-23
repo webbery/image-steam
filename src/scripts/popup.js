@@ -9,15 +9,31 @@ storage.get('color', function(resp) {
   }
 });
 
+function selectResourceDB(resourceDB) {
+  const currentElm = document.getElementById("activeDB")
+  if (currentElm.innerText === resourceDB) return;
+  currentElm.innerText = resourceDB
+  usedDB = resourceDB
+}
+
+function bindClick(candidates) {
+  for (let db of candidates) {
+    const elm = document.getElementById('candidate_' + db)
+    elm.onclick = function() {
+      selectResourceDB(db)
+    }
+  }
+}
+
 var template = (candidates, active) => {
   let html = '<div class="dropdown-content">'
   for (let db of candidates) {
-    html += '<a href="#">' + db + '</a>'
+    html += '<a href="#" id="candidate_' + db + '">' + db + '</a>'
   }
   html += '</div>'
   return (`默认保存资源库:
   <div class="dropdown">
-    <button class="dropbtn">${active}</button>
+    <button class="dropbtn" id="activeDB">${active}</button>
     ${html}
   </div>
   `);
@@ -36,7 +52,8 @@ var renderBookmark = (data) => {
   const dbs = bg.getAllDB()
   if(dbs && dbs.length) {
     var tmpl = template(dbs, active);
-    displayContainer.innerHTML = tmpl;  
+    displayContainer.innerHTML = tmpl;
+    bindClick(dbs)
   } else {
     renderMessage("<div>未检测到Civet, 请确认已经启动</div>")
   }
