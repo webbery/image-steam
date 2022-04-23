@@ -31,7 +31,7 @@ var template = (candidates, active) => {
     html += '<a href="#" id="candidate_' + db + '">' + db + '</a>'
   }
   html += '</div>'
-  return (`默认保存资源库:
+  return (`<div>默认保存资源库:</div>
   <div class="dropdown">
     <button class="dropbtn" id="activeDB">${active}</button>
     ${html}
